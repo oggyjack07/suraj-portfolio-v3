@@ -1,4 +1,4 @@
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowUpRight, FiClock } from 'react-icons/fi'
 
 const projects = [
 
@@ -8,6 +8,7 @@ const projects = [
     tech: ['React', 'Next.js', 'PostgreSQL'],
     live: 'https://campushelp-eta.vercel.app/',
     github: 'https://github.com/oggyjack07',
+    isInProgress: true,
   },
   {
     title: 'Image Classifier',
@@ -15,15 +16,16 @@ const projects = [
     tech: ['Python', 'CLIP', 'Streamlit', 'PyTorch'],
     live: 'https://image-classifierr.streamlit.app/',
     github: 'https://github.com/oggyjack07',
+    isInProgress: false,
   },
   {
     title: 'Travel Guide Website',
     description: 'A responsive city travel guide showcasing famous places of Indore, Ujjain, Bhopal with photos, videos, and maps.',
     tech: ['HTML', 'CSS', 'JavaScript'],
-    live: 'https://oggyjack07.github.io/Travel-Guide-Website-Project/',
+    live: 'https://github.com/oggyjack07/City-Guide-website-Project',
     github: 'https://github.com/oggyjack07/City-Guide-website-Project',
+    isInProgress: false,
   },
-  
 ]
 
 export default function Projects() {
@@ -39,10 +41,21 @@ export default function Projects() {
           <div key={project.title} className="group p-8 md:p-10 bg-card border border-line rounded-3xl hover:border-ink/20 hover:shadow-soft-lg transition-all duration-300">
             <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
               <div className="flex-1">
-                <h3 className="text-xl md:text-2xl font-bold mb-3 tracking-tight group-hover:text-accent transition-colors">
-                  {project.title}
-                </h3>
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  <h3 className="text-xl md:text-2xl font-bold tracking-tight group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  
+                  {/* Status Badge */}
+                  {project.isInProgress && (
+                    <span className="flex items-center gap-1.5 text-xs font-semibold px-3 py-1 bg-yellow-500/10 text-yellow-600 border border-yellow-500/20 rounded-full">
+                      <FiClock className="animate-pulse" /> Mobile Optimization in Progress
+                    </span>
+                  )}
+                </div>
+                
                 <p className="text-muted mb-5 leading-relaxed max-w-xl">{project.description}</p>
+                
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <span key={t} className="text-xs px-3 py-1.5 bg-bg border border-line rounded-full text-muted">
@@ -51,10 +64,13 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
-              <div className="flex gap-3">
+              
+              <div className="flex gap-3 mt-4 md:mt-0">
+                {/* Ab Live button hamesha dikhega */}
                 <a href={project.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold px-5 py-3 bg-ink text-bg rounded-full hover:opacity-80 hover:-translate-y-0.5 transition-all">
                   Live <FiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </a>
+                
                 <a href={project.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold px-5 py-3 bg-card border border-line rounded-full hover:border-ink transition-colors text-ink">
                   GitHub
                 </a>
